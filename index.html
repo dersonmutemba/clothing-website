@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="pt-pt">
+    <head>
+        <title>Finesse Fashion</title>
+        <link rel="icon" type="image/x-icon" href="images/favicon.ico">
+        <link type="text/css" rel="stylesheet" href="css/styles.css">
+        <style>
+            td{
+                width: 25%;
+                text-align: center;
+            }
+
+            #lista-de-produtos{
+                display: flex;
+                flex-wrap: wrap;
+                justify-content: center;
+                margin: 50px;
+            }
+
+            .item{
+                width: 300px;
+                height: 300px;
+                display: flex;
+                flex-direction: column;
+                align-content: center;
+                text-align: center;
+                user-select: none;
+                box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.55);
+                overflow: hidden;
+                border-radius: 5px;
+                position: relative;
+                margin: 25px;
+            }
+
+            .item-details{
+                position: absolute;
+                align-self: center;
+                bottom: -140px;
+                background-color: black;
+                width: 100%;
+                color: white;
+                transition: .8s;
+            }
+
+            .item-details:hover{
+                background-color: #000000A0;
+                bottom: 0;
+            }
+
+            .item-price, .item-total-price{
+                color: #ffac38;
+                font-weight: 600;
+            }
+
+            .quantity-button{
+                border-width: 0;
+                margin: 0px 15px;
+                cursor: pointer;
+                width: 30px;
+                height: 30px;
+                border-radius: 10px;
+                font-size: large;
+                transition: .5s;
+            }
+
+            .quantity-button:hover{
+                background-color: rgb(200, 200, 200);
+            }
+
+            .image-navigation-button{
+                position: absolute;
+                top: 45%;
+                z-index: 1;
+                cursor: pointer;
+                border-width: 0;
+                width: 30px;
+                height: 30px;
+                font-weight: bolder;
+                font-size: 20px;
+                background-color: #ccc;
+                transition: .8s;
+            }
+
+            .image-navigation-button:hover{
+                background-color: #aaa;
+            }
+
+            .go-back-button{
+                border-radius: 0 50% 50% 0;
+                left: 0;
+            }
+
+            .go-forward-button{
+                border-radius: 50% 0 0 50%;
+                right: 0;
+            }
+
+            .item-image{
+                position: absolute;
+                top: 0;
+                left: 0;
+                bottom: 0;
+                right: 0;
+                width: 100%;
+                background-size: cover;
+                background-position: center;
+                transition: ease-in-out .55s;
+            }
+
+            #slogan-print-t-shirt-image{
+                background-image: url('media/zara/0977310251_6_1_1.jpg');
+            }
+
+            #tb-peackock-t-shirt-pink-image{
+                background-image: url('media/taibo-bacar/BG-TBX1-T3-750x750.jpg');
+            }
+
+            #wool-blend-coat-image{
+                background-image: url('media/zara/9621310706_6_1_1.jpg');
+            }
+
+            #mens-t-shirt-image{
+                background-image: url('media/nike/aed62f74-1171-43ec-a148-290f4a75ee07.webp');
+            }
+
+            #submit-button{
+                border-width: 0;
+                background-color: #ffac38;
+                color: white;
+                font-weight: bold;
+                font-size: x-large;
+                width: 200px;
+                border-radius: 40px;
+                height: 80px;
+                cursor: pointer;
+                justify-self: center;
+                transition: .7s;
+            }
+
+            #submit-button:hover{
+                background-color: white;
+                color: #ffac38;
+                font-size: xx-large;
+            }
+        </style>
+
+        <script src="js/scripts.js"></script>
+    </head>
+    <body onload="addProducts()">
+        <header>
+            <div id="top-bar">
+                <div id="page-title-and-logo">
+                    <img src="images/finesse_fashion.png" alt="Finesse Fashion" height="50px" class="logo">
+                    <span>Finesse Fashion</span>
+                </div>
+                <div id="nav">
+                    <a href="index.html">
+                        <div class="nav-item nav-item-1" style="background-color: white; color: #ffac38;">
+                            <span class="nav-item-text nav-item-text-1">In&iacute;cio</span>
+                        </div>
+                    </a>
+                    <div class="nav-separator"></div>
+                    <a href="pages/contactos.html">
+                        <div class="nav-item nav-item-2">
+                            <span class="nav-item-text nav-item-text-2">Contactos</span>
+                        </div>
+                    </a>
+                    <div class="nav-separator"></div>
+                    <a href="pages/sobre.html">
+                        <div class="nav-item nav-item-3">
+                            <span class="nav-item-text nav-item-text-3">Sobre</span>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </header>
+
+        <form action="http://asi.isutc.ac.mz:8080/asi/show_parameters.jsp" method="get">
+            <div id="lista-de-produtos">
+                
+            </div>
+            <div style="display: grid; justify-content: space-around;">
+                <table>
+                    <tr>
+                        <th>Nome</th>
+                        <th>Pre&ccedil;o</th>
+                        <th>Quantidade</th>
+                        <th>Pre&ccedil;o total</th>
+                    </tr>
+                    <tr>
+                        <td>Slogan Print T-Shirt [Zara]</td>
+                        <td id="td-slogan-print-t-shirt-preco">1440.35</td>
+                        <td id="td-slogan-print-t-shirt-quantity">0</td>
+                        <td id="td-slogan-print-t-shirt-preco-total">0</td>
+                    </tr>
+                    <tr>
+                        <td>TB Peacock T-shirt Pink [Taibo Bacar]</td>
+                        <td id="td-tb-peackock-t-shirt-pink-preco">20000.00</td>
+                        <td id="td-tb-peackock-t-shirt-pink-quantity">0</td>
+                        <td id="td-tb-peackock-t-shirt-pink-preco-total">0</td>
+                    </tr>
+                    <tr>
+                        <td>Wool Blend Coat [Zara]</td>
+                        <td id="td-wool-blend-coat-preco">6276.42</td>
+                        <td id="td-wool-blend-coat-quantity">0</td>
+                        <td id="td-wool-blend-coat-preco-total">0</td>
+                    </tr>
+                    <tr>
+                        <td>Men's T-Shirt [Nike]</td>
+                        <td id="td-mens-t-shirt-preco">3191.50</td>
+                        <td id="td-mens-t-shirt-quantity">0</td>
+                        <td id="td-mens-t-shirt-preco-total">0</td>
+                    </tr>
+                    <tr>
+                        <td colspan="3" style="text-align: right;"><b>Total</b></td>
+                        <td id="preco-total">0</td>
+                    </tr>
+                </table>
+                <br/><br/><br/>
+                <input id="submit-button" type="submit" value="Comprar">
+                <br/><br/><br/>
+            </div>
+        </form>
+    </body>
+</html>
